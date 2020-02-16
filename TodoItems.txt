@@ -3,3 +3,5 @@ Go to work	Go to work and write some HTML and CSS	17-02-2020
 Pay bills	Pay a bill for water	15-02-2020
 Learn Java	Learn Java until the end of the year	31-12-2020
 Watch Champions League	Watch games of Champions League returns this week	19-02-2020
+New Test Item	This Item will be added form out super cool form!	25-02-2020
+Another one	This one should be mark as selected after successfully adding. And Im going to watch SS Lazio vs Internazionale (or how it is...)	16-02-2020
