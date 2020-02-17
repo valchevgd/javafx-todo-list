@@ -28,7 +28,8 @@
 
     <center>
         <VBox>
-            <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS"/>
+            <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS"
+                wrapText="true"/>
             <HBox style="-fx-background-color: white;">
                 <Label text="Due: ">
                     <font>
