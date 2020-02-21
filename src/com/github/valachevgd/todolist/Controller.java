@@ -2,6 +2,9 @@ package com.github.valachevgd.todolist;
 
 import com.github.valachevgd.todolist.datamodel.TodoData;
 import com.github.valachevgd.todolist.datamodel.TodoItem;
+import javafx.application.Platform;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -28,6 +31,10 @@ public class Controller {
     private BorderPane mainBorderPane;
     @FXML
     private ContextMenu listContextMenu;
+    @FXML
+    private ToggleButton filterToggleButton;
+
+    private FilteredList<TodoItem> filteredList;
 
     public void initialize() {
 
@@ -48,7 +55,10 @@ public class Controller {
             }
         });
 
-        todoListView.setItems(TodoData.getInstance().getTodoItems());
+        filteredList = new FilteredList<>(TodoData.getInstance().getTodoItems(), todoItem -> true);
+        SortedList<TodoItem> sortedList = new SortedList<>(filteredList, (todoItem, item) -> todoItem.getDeadline().compareTo(item.getDeadline()));
+
+        todoListView.setItems(sortedList);
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
 
@@ -139,5 +149,34 @@ public class Controller {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             TodoData.getInstance().deleteTodoItem(item);
         }
+    }
+
+    @FXML
+    public void handleFilterButton() {
+
+        TodoItem selectedItem = todoListView.getSelectionModel().getSelectedItem();
+
+        if (filterToggleButton.isSelected()) {
+
+            filteredList.setPredicate(todoItem -> todoItem.getDeadline().equals(LocalDate.now()));
+            if (filteredList.isEmpty()) {
+                itemDetailsTextArea.clear();
+                deadlineLabel.setText("");
+            } else if (filteredList.contains(selectedItem)) {
+                todoListView.getSelectionModel().getSelectedItem();
+            } else {
+                todoListView.getSelectionModel().selectFirst();
+            }
+
+        } else {
+
+            filteredList.setPredicate(todoItem -> true);
+            todoListView.getSelectionModel().getSelectedItem();
+        }
+    }
+
+    @FXML
+    public void handleExit() {
+        Platform.exit();
     }
 }

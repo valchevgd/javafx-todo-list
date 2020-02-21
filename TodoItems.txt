@@ -4,3 +4,5 @@ Learn Java	Learn Java until the end of the year	31-12-2020
 Watch Champions League	Watch games of Champions League returns this week	19-02-2020
 Another one	This one should be mark as selected after successfully adding. And Im going to watch SS Lazio vs Internazionale (or how it is...)	16-02-2020
 LJGF	Learn Java Get Fun!	06-09-2020
+Нова задача	Нова задача за да тестваме какво ще стане	28-02-2020
+Today's todo	Watch Bundesliga	21-02-2020
